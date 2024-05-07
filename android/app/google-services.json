@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "973002034526",
+    "project_id": "interview-b1900",
+    "storage_bucket": "interview-b1900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973002034526:android:8a14bd378507ed154953cf",
+        "android_client_info": {
+          "package_name": "com.example.interview"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-aXGLYY1mKSveosiXvaHMc-0fnCi_W0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973002034526:android:d65279fb0ea661e94953cf",
+        "android_client_info": {
+          "package_name": "com.example.task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-aXGLYY1mKSveosiXvaHMc-0fnCi_W0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

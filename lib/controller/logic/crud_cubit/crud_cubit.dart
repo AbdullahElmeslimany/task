@@ -63,9 +63,11 @@ class CrudCubit extends Cubit<CrudState> {
 
 //Delete
   delete({required id}) async {
-    await pref.doc(id).delete().then((value) {
-      Get.snackbar("Success", "Data Deleted");
-      // emit(DeleteState());
-    });
+    if (length > 1) {
+      await pref.doc(id).delete().then((value) {
+        Get.snackbar("Success", "Data Deleted");
+        // emit(DeleteState());
+      });
+    }
   }
 }

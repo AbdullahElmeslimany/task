@@ -47,7 +47,7 @@ class CrudCubit extends Cubit<CrudState> {
     required id,
   }) async {
     await pref.doc(id).update({
-      "branch": ControllerData.branchController.text,
+      "branch": int.parse(ControllerData.branchController.text),
       "customNo": ControllerData.customNoController.text,
       "arabicName": ControllerData.arabicNameController.text,
       "arabicDescription": ControllerData.arabicDescriptionController.text,

@@ -18,14 +18,7 @@ class MyHomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue[800],
-          leading: IconButton(
-              onPressed: () {
-                cubitCrud.delete(id: cubitCrud.data[cubit.index].id);
-              },
-              icon: Icon(
-                Icons.delete,
-                color: Colors.red[400],
-              )),
+          // leading: IconButton(onPressed: () {cubitCrud.delete(id: cubitCrud.data[cubit.index].id);},icon: Icon(Icons.delete,color: Colors.red[400],)),
           title: const Text(
             "Branch / Store  / Cashier",
             style: TextStyle(fontSize: 16, color: Colors.white),

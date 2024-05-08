@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/controller/logic/crud_cubit/crud_cubit.dart';
-import '../../controller/data_controller/data_controller.dart';
 import '../../controller/logic/handle_cubit/handle_page_cubit.dart';
 import '../buttom_bar/buttom_bar.dart';
 import '../screen/screen.dart';
@@ -45,21 +44,15 @@ class MyHomePage extends StatelessWidget {
                                     cubitCRUD: cubitCrud, value: value);
                               },
                               itemBuilder: (context, index) {
-                                if (constraints.maxWidth > 700) {
-                                  return Form(
-                                    key: GlobalKey<FormState>(
-                                        debugLabel: 'Form_$index'),
-                                    onChanged: () => index++,
-                                    child: newScreen(context),
-                                  );
-                                } else {
-                                  return SingleChildScrollView(
-                                    child: Form(
-                                      key: ControllerData.formKey,
-                                      child: smoothU(context),
-                                    ),
-                                  );
-                                }
+                                // if (constraints.maxWidth > 700) {
+                                return Form(
+                                  key: GlobalKey<FormState>(
+                                      debugLabel: 'Form_$index'),
+                                  onChanged: () => index++,
+                                  child: constraints.maxWidth > 700
+                                      ? newScreen(context)
+                                      : smoothU(context),
+                                );
                               },
                             );
                           },

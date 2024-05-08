@@ -16,6 +16,7 @@ class MyHomePage extends StatelessWidget {
     final cubitCrud = BlocProvider.of<CrudCubit>(context);
     cubit.init();
     cubitCrud.read(cubit);
+
     return SafeArea(
       child: Scaffold(
         appBar: appBar(cubitCrud, cubit),
@@ -46,7 +47,9 @@ class MyHomePage extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 if (constraints.maxWidth > 700) {
                                   return Form(
-                                    key: ControllerData.formKey,
+                                    key: GlobalKey<FormState>(
+                                        debugLabel: 'Form_$index'),
+                                    onChanged: () => index++,
                                     child: newScreen(context),
                                   );
                                 } else {

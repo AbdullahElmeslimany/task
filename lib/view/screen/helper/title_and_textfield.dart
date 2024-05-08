@@ -4,6 +4,7 @@ import '../../../model/textfromfieldcustom.dart';
 
 titleAndTextFieldSmall(context,
     {required TextEditingController controller,
+    keyboardType = TextInputType.name,
     required title,
     ltr = true,
     enabel = true,
@@ -21,6 +22,7 @@ titleAndTextFieldSmall(context,
       Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
         child: textFromFieldcustom(
+            keyboardType: keyboardType,
             ltr: ltr,
             enabel: enabel,
             maxLines: maxLines,

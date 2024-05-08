@@ -38,7 +38,8 @@ class ButtomBar extends StatelessWidget {
             return BlocBuilder<CrudCubit, CrudState>(
               builder: (context, state) {
                 return Text(
-                  "${cubit.index + 1}/${cubit.length}",
+                  "${cubit.index + 1}/${cubitCRUD.data.length}",
+                  // "${cubit.index + 1}/${cubit.length}",
                   style: TextStyle(
                     color: Colors.blue[900],
                   ),

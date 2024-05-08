@@ -31,8 +31,9 @@ class HandlePageCubit extends Cubit<HandlePageState> {
 
   handleData({required cubitCRUD, required value}) {
     if (value <= cubitCRUD.data.length - 1) {
-      ControllerData.branchController.text =
-          cubitCRUD.data[value]["branch"].toString();
+      // ControllerData.branchController.text =
+      //     cubitCRUD.data[value]["branch"].toString();
+      ControllerData.branchController.text = (value + 1).toString();
       ControllerData.customNoController.text =
           cubitCRUD.data[value]["customNo"];
       ControllerData.arabicNameController.text =

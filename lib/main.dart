@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:task/controller/logic/handle_cubit/handle_page_cubit.dart';
-
 import 'controller/logic/crud_cubit/crud_cubit.dart';
 import 'view/home/home.dart';
 

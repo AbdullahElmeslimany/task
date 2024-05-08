@@ -44,7 +44,6 @@ class MyHomePage extends StatelessWidget {
                                     cubitCRUD: cubitCrud, value: value);
                               },
                               itemBuilder: (context, index) {
-                                // if (constraints.maxWidth > 700) {
                                 return Form(
                                   key: GlobalKey<FormState>(
                                       debugLabel: 'Form_$index'),

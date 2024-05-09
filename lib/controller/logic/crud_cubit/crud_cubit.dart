@@ -23,6 +23,7 @@ class CrudCubit extends Cubit<CrudState> {
       "englishDescription": "",
       "note": "",
       "address": "",
+      "time": Timestamp.now(),
       // "customNo": ControllerData.customNoController.text,
       // "arabicName": ControllerData.arabicNameController.text,
       // "arabicDescription": ControllerData.arabicDescriptionController.text,
@@ -44,7 +45,7 @@ class CrudCubit extends Cubit<CrudState> {
   read(cubit) async {
     emit(LoadingState());
 
-    pref.orderBy("branch", descending: false).snapshots().listen((event) {
+    pref.orderBy("time", descending: false).snapshots().listen((event) {
       data.clear();
       data.addAll(event.docs);
       if (data.isNotEmpty) {

@@ -7,6 +7,7 @@ import 'helper/title_and_textfield.dart';
 newScreen(BuildContext context) {
   return SingleChildScrollView(
     child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(

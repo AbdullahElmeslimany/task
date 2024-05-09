@@ -8,7 +8,7 @@ part 'crud_state.dart';
 
 class CrudCubit extends Cubit<CrudState> {
   CrudCubit() : super(CrudInitial());
-  CollectionReference pref = FirebaseFirestore.instance.collection("task");
+  CollectionReference pref = FirebaseFirestore.instance.collection("tasks");
   List data = [];
   late int length = data.length;
 
@@ -16,7 +16,6 @@ class CrudCubit extends Cubit<CrudState> {
   create(cubit) async {
     await pref.add({
       "branch": data.length + 1,
-//
       "customNo": "",
       "arabicName": "",
       "arabicDescription": "",
@@ -24,7 +23,6 @@ class CrudCubit extends Cubit<CrudState> {
       "englishDescription": "",
       "note": "",
       "address": "",
-//
       // "customNo": ControllerData.customNoController.text,
       // "arabicName": ControllerData.arabicNameController.text,
       // "arabicDescription": ControllerData.arabicDescriptionController.text,
@@ -49,8 +47,11 @@ class CrudCubit extends Cubit<CrudState> {
     pref.orderBy("branch", descending: false).snapshots().listen((event) {
       data.clear();
       data.addAll(event.docs);
-      firstHandleData(data: data);
+      if (data.isNotEmpty) {
+        firstHandleData(data: data);
+      }
       length = data.length;
+
       cubit.pageController.jumpToPage(0);
 
       emit(ReadState());
@@ -81,12 +82,10 @@ class CrudCubit extends Cubit<CrudState> {
 
 //Delete
   delete(cubit, {required id}) async {
-    if (length > 1) {
-      await pref.doc(id).delete().then((value) {
-        Get.snackbar("Success", "Data Deleted");
-        cubit.pageController.jumpToPage(length - 1);
-        // emit(DeleteState());
-      });
-    }
+    await pref.doc(id).delete().then((value) {
+      Get.snackbar("Success", "Data Deleted");
+      cubit.pageController.jumpToPage(length - 1);
+      // emit(DeleteState());
+    });
   }
 }

@@ -72,7 +72,7 @@ class CrudCubit extends Cubit<CrudState> {
       "note": ControllerData.noteController.text,
       "address": ControllerData.addressController.text,
     }).then((value) {
-      cubit.pageController.jumpToPage(length - 1);
+      // cubit.pageController.jumpToPage(length - 1);
 
       Get.snackbar("Success", "Data Updated");
       emit(UpdateState());

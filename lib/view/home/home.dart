@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/controller/logic/crud_cubit/crud_cubit.dart';
+import '../../controller/data_controller/data_controller.dart';
 import '../../controller/logic/handle_cubit/handle_page_cubit.dart';
 import '../buttom_bar/buttom_bar.dart';
 import '../screen/screen.dart';
@@ -34,25 +35,23 @@ class MyHomePage extends StatelessWidget {
                       Expanded(
                         child: BlocBuilder<HandlePageCubit, HandlePageState>(
                           builder: (context, state) {
-                            return PageView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              controller: cubit.pageController,
-                              itemCount: cubitCrud.data.length,
-                              onPageChanged: (value) {
-                                cubit.changePage(pageindex: value);
-                                cubit.handleData(
-                                    cubitCRUD: cubitCrud, value: value);
-                              },
-                              itemBuilder: (context, index) {
-                                return Form(
-                                  key: GlobalKey<FormState>(
-                                      debugLabel: 'Form_$index'),
-                                  onChanged: () => index++,
-                                  child: constraints.maxWidth > 700
+                            return Form(
+                              key: ControllerData.formKey,
+                              child: PageView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                controller: cubit.pageController,
+                                itemCount: cubitCrud.data.length,
+                                onPageChanged: (value) {
+                                  cubit.changePage(pageindex: value);
+                                  cubit.handleData(
+                                      cubitCRUD: cubitCrud, value: value);
+                                },
+                                itemBuilder: (context, index) {
+                                  return constraints.maxWidth > 700
                                       ? newScreen(context)
-                                      : smoothU(context),
-                                );
-                              },
+                                      : smoothU(context);
+                                },
+                              ),
                             );
                           },
                         ),

@@ -63,16 +63,18 @@ class CrudCubit extends Cubit<CrudState> {
     required id,
   }) async {
     final index = cubit.index;
-    await pref.doc(id).update({
-      "branch": int.parse(ControllerData.branchController.text),
-      "customNo": ControllerData.customNoController.text,
-      "arabicName": ControllerData.arabicNameController.text,
-      "arabicDescription": ControllerData.arabicDescriptionController.text,
-      "englishName": ControllerData.englishNameController.text,
-      "englishDescription": ControllerData.englishDescriptionController.text,
-      "note": ControllerData.noteController.text,
-      "address": ControllerData.addressController.text,
-    }).then(
+    await pref.doc(id).update(
+      {
+        "branch": int.parse(ControllerData.branchController.text),
+        "customNo": ControllerData.customNoController.text,
+        "arabicName": ControllerData.arabicNameController.text,
+        "arabicDescription": ControllerData.arabicDescriptionController.text,
+        "englishName": ControllerData.englishNameController.text,
+        "englishDescription": ControllerData.englishDescriptionController.text,
+        "note": ControllerData.noteController.text,
+        "address": ControllerData.addressController.text,
+      },
+    ).then(
       (value) {
         cubit.pageController.jumpToPage(index);
         Get.snackbar("Success", "Saved");

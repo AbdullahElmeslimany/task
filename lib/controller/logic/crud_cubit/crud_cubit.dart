@@ -14,49 +14,47 @@ class CrudCubit extends Cubit<CrudState> {
 
 //Create
   create(cubit) async {
-    await pref.add({
-      "branch": data.length + 1,
-      "customNo": "",
-      "arabicName": "",
-      "arabicDescription": "",
-      "englishName": "",
-      "englishDescription": "",
-      "note": "",
-      "address": "",
-      "time": Timestamp.now(),
-      // "customNo": ControllerData.customNoController.text,
-      // "arabicName": ControllerData.arabicNameController.text,
-      // "arabicDescription": ControllerData.arabicDescriptionController.text,
-      // "englishName": ControllerData.englishNameController.text,
-      // "englishDescription": ControllerData.englishDescriptionController.text,
-      // "note": ControllerData.noteController.text,
-      // "address": ControllerData.addressController.text,
-    }).then((value) {
-      cubit.changelength();
-      cubit.pageController.jumpToPage(cubit.length - 1);
-      Get.snackbar("Success", "Add Data");
-      // emit(CreateState());
-    }).onError((error, stackTrace) {
-      Get.snackbar("Error", "Error Data");
-    });
+    await pref.add(
+      {
+        "branch": data.length + 1,
+        "customNo": "",
+        "arabicName": "",
+        "arabicDescription": "",
+        "englishName": "",
+        "englishDescription": "",
+        "note": "",
+        "address": "",
+        "time": Timestamp.now(),
+      },
+    ).then(
+      (value) {
+        cubit.changelength();
+        cubit.pageController.jumpToPage(cubit.length - 1);
+        Get.snackbar("Success", "Add Data");
+        // emit(CreateState());
+      },
+    ).onError(
+      (error, stackTrace) {
+        Get.snackbar("Error", "Error Data");
+      },
+    );
   }
 
 //Read
   read(cubit) async {
     emit(LoadingState());
-
-    pref.orderBy("time", descending: false).snapshots().listen((event) {
-      data.clear();
-      data.addAll(event.docs);
-      if (data.isNotEmpty) {
-        firstHandleData(data: data);
-      }
-      length = data.length;
-
-      cubit.pageController.jumpToPage(0);
-
-      emit(ReadState());
-    });
+    pref.orderBy("time", descending: false).snapshots().listen(
+      (event) {
+        data.clear();
+        data.addAll(event.docs);
+        if (data.isNotEmpty) {
+          firstHandleData(data: data);
+        }
+        length = data.length;
+        cubit.pageController.jumpToPage(0);
+        emit(ReadState());
+      },
+    );
   }
 
 //Update
@@ -64,6 +62,7 @@ class CrudCubit extends Cubit<CrudState> {
     cubit, {
     required id,
   }) async {
+    final index = cubit.index;
     await pref.doc(id).update({
       "branch": int.parse(ControllerData.branchController.text),
       "customNo": ControllerData.customNoController.text,
@@ -73,20 +72,24 @@ class CrudCubit extends Cubit<CrudState> {
       "englishDescription": ControllerData.englishDescriptionController.text,
       "note": ControllerData.noteController.text,
       "address": ControllerData.addressController.text,
-    }).then((value) {
-      // cubit.pageController.jumpToPage(length - 1);
-
-      Get.snackbar("Success", "Data Updated");
-      emit(UpdateState());
-    });
+    }).then(
+      (value) {
+        cubit.pageController.jumpToPage(index);
+        Get.snackbar("Success", "Data Updated");
+        emit(UpdateState());
+      },
+    );
   }
 
 //Delete
   delete(cubit, {required id}) async {
-    await pref.doc(id).delete().then((value) {
-      Get.snackbar("Success", "Data Deleted");
-      cubit.pageController.jumpToPage(length - 1);
-      // emit(DeleteState());
-    });
+    final index = cubit.index;
+    await pref.doc(id).delete().then(
+      (value) {
+        Get.snackbar("Success", "Data Deleted");
+        cubit.pageController.jumpToPage(index);
+        // emit(DeleteState());
+      },
+    );
   }
 }

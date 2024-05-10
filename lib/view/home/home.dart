@@ -24,9 +24,6 @@ class MyHomePage extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return BlocBuilder<CrudCubit, CrudState>(
               builder: (context, state) {
-                if (state is LoadingState) {
-                  const Center(child: CircularProgressIndicator());
-                }
                 cubit.firstlength(cubitCRUD: cubitCrud);
                 return Container(
                   margin: const EdgeInsets.all(15),

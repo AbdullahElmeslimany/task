@@ -30,7 +30,7 @@ class CrudCubit extends Cubit<CrudState> {
       (value) {
         cubit.changelength();
         cubit.pageController.jumpToPage(cubit.length - 1);
-        Get.snackbar("Success", "Add Data");
+        Get.snackbar("Success", "New Record");
         // emit(CreateState());
       },
     ).onError(
@@ -75,7 +75,7 @@ class CrudCubit extends Cubit<CrudState> {
     }).then(
       (value) {
         cubit.pageController.jumpToPage(index);
-        Get.snackbar("Success", "Data Updated");
+        Get.snackbar("Success", "Saved");
         emit(UpdateState());
       },
     );
@@ -86,7 +86,7 @@ class CrudCubit extends Cubit<CrudState> {
     final index = cubit.index;
     await pref.doc(id).delete().then(
       (value) {
-        Get.snackbar("Success", "Data Deleted");
+        Get.snackbar("Success", "Deleted");
         cubit.pageController.jumpToPage(index);
         // emit(DeleteState());
       },
